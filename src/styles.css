@@ -1,0 +1,16 @@
+*{
+    font-family: Helvetica, Arial;
+}
+
+.root {
+    max-width: 1440px;
+    /*//1182px;*/
+    margin: 0 auto;
+
+
+}
+
+body{
+    padding: 0;
+    margin: 0;
+}
