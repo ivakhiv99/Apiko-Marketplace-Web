@@ -11,27 +11,37 @@ import logoBlack from '../../images/logoBlack.png';
 import SellBtn from '../../atoms/SellBtn/SellBtn';
 import SavedBtn from '../../atoms/SavedBtn/SavedBtn';
 
+import UserInfo from '../UserInfo/Tooltip';
+import { getRandomColor } from '../../helpers/helperFunctions';
 
-function Header({ handleLogout, isLight }) {
-  // const headerClases =
+/*<button type='button' onClick={handleLogout}>Logout</button>*/
+
+
+function Header({ handleLogout, isLight, children }) {
+
+  console.log('isLoggedIn: ', Api.Auth.isLoggedIn);
+  let iconBg = getRandomColor();
+
   return (
     <header className={`${s.header} ${isLight ? s.lightHeader : s.darkHeader} `}>
-      <div className={s.left}>
-        <Link to={routes.home}>
-          <img alt='logo' src={isLight ? logoBlack : logoWhite} />
-        </Link>
-      </div>
-      <div className={s.right}>
-        <SellBtn />
-        {Api.Auth.isLoggedIn ?
-          <button type='button' onClick={handleLogout}>Logout</button>
-          :
-          <Link className={`${s.loginLink} ${isLight ? s.blackLink : s.whiteLink} `} to={routes.login}>Login</Link>
-        }
-        {/*<Link to={routes.register}>Register</Link>*/}
-        <SavedBtn isWhite={!isLight} />
-      </div>
+      <div className={s.costul}>
+        <div>
+          <Link to={routes.home}>
+            <img alt='logo' src={isLight ? logoBlack : logoWhite} />
+          </Link>
+        </div>
+        <div className={s.right}>
+          <SellBtn />
 
+          {Api.Auth.isLoggedIn ?
+            <UserInfo iconBg={iconBg} />
+            :
+            <Link className={`${s.loginLink} ${isLight ? s.blackLink : s.whiteLink}`} to={routes.login}>Login</Link>
+          }
+          <SavedBtn isWhite={!isLight} />
+        </div>
+      </div>
+      {children}
     </header>
   );
 }

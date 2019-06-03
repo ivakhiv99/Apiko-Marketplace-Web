@@ -1,3 +1,13 @@
+import axios from 'axios';
+
+const urls = {
+  login: '/api/auth/login',
+  register: '/api/auth/register',
+  getViewer: '/api/account/user',
+  getLatest:'/api/products/latest',
+};
+
+
 export const Auth = {
   _token: null,
 
@@ -5,22 +15,25 @@ export const Auth = {
     return !!this._token;
   },
 
-  // set
+  setToken(token){
+    this._token = token;
+    this._storeToken();
+    this._setTokenToAxios(token);
+  },
 
   init(){
     try {
       const token = window.localStorage.getItem('token');
       this._token = JSON.parse(token);
+
+      this._setTokenToAxios();
     }catch (e) {
       console.log(e);
     }
   },
 
-  login(){
-    //
-    this._token = 'token';
-
-    this._storeToken();
+  login(body){
+    return axios.post(urls.login, body);
   },
 
   logout(){
@@ -40,7 +53,21 @@ export const Auth = {
     }
   },
 
+  _setTokenToAxios(){
+    axios.defaults.headers.common.Authorization = `Bearer ${this._token}`;  //  Unresolved common
+  },
+};
 
+export const Viewer ={
+  get(){
+    return axios.get(urls.getViewer);
+  }
+};
+
+export const Products ={
+  getLatest(){
+    return axios.get(urls.getLatest);
+  }
 };
 
 export function init() {

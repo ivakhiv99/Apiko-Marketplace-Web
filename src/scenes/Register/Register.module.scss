@@ -1,0 +1,61 @@
+.container {
+    max-width: 425px;
+    margin: 61px auto;
+    display: flex;
+    flex-direction: column;
+
+}
+.registerContainer {
+    height: 550px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 2px 42px rgba(0, 0, 0, 0.111233);
+    border-radius: 7px;
+
+    & h2 {
+        margin: 25px 0 17px 0;
+        font-size: 22px;
+        line-height: 25px;
+        //color: red;
+    }
+}
+
+.registerBtn {
+    width: 377px;
+    height: 58px;
+    margin: 32px 0;
+    background-color: #349A89;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.linkContiner {
+    height: 76px;
+    margin-top: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 42px rgba(0, 0, 0, 0.111233);
+    border-radius: 7px;
+
+}
+.loginLink {
+    margin-left: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #349A89;
+    //vertical-align: middle;
+    &:active {
+        text-decoration: none;
+        color: #349A89;
+    }
+
+    &:visited {
+        text-decoration: none;
+        color: #349A89;
+    }
+
+}
